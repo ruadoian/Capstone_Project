@@ -17,15 +17,15 @@ function ContextProvider({children}){
     } 
 
     const addToCart = (imgObj) =>{
-        // const newCart = cartItems.map(cart => {
-        //     if(cart.id === imgObj.id){
-        //         console.log("")
-        //     }
-        // })
         setCartItems(prevData => [...prevData, imgObj])
+    }    
+
+    const removeToCart = (id)=>{
+        const updatedCart = cartItems.filter(item => item.id !== id)
+        setCartItems(updatedCart)
     }
     console.log(cartItems)
-
+    
     const url = "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
     useEffect(()=>{
         fetch(url)
@@ -34,7 +34,7 @@ function ContextProvider({children}){
     },[])
 
     return(
-        <Context.Provider value={{allPhotos, cartItems, toggleFavorite, addToCart}}>
+        <Context.Provider value={{allPhotos, cartItems, toggleFavorite, addToCart, removeToCart}}>
             {children}
         </Context.Provider>
     )
