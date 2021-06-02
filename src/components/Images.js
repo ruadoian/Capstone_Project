@@ -14,7 +14,6 @@ function Images({img, className}){
         }
     }
 
-
     const cartIcon = () => {
         const findCart =  cartItems.some(item => item.id === img.id)        
         if(findCart){
