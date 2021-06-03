@@ -11,7 +11,7 @@ function Cart(){
     const totalCost = cost.toLocaleString("ja-JP", {style:"currency", currency:"JPY"})
 
     const cartItemElements = cartItems.map(item => (
-        <Cartitems key={item.id} cartItem={item} />
+        <Cartitems key={item.id} item={item} />
     ))
     
 
@@ -24,13 +24,15 @@ function Cart(){
         },3000)
     }
 
+    const toggleBtn = cartItems.length > 0 && <button onClick={() => (processOrder())}>{orderStatus}</button>
+
     return(
         <main className="cart-page">
             <h1>Check out</h1>
             {cartItemElements}
             <p className="total-cost">Total: {totalCost}</p>
             <div className="order-button">
-                <button onClick={() => (processOrder())}>{orderStatus}</button>
+                {toggleBtn}
             </div>
         </main>
     )
